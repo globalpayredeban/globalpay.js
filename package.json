@@ -1,0 +1,50 @@
+{
+  "name": "globalpayredeban-js",
+  "authors": [
+    "Developer Team <dev@globalpay.com.co>"
+  ],
+  "description": "Credit Card input form with validation and allows you to create a token with credit/debit card details in your web apps, by preventing sensitive card data from crossing your server (More information, read PCI compliance).",
+  "version": "2.0.0",
+  "main": "./payment_2.0.0.min.js",
+  "homepage": "https://www.rbmcolombia.com",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "GlobalPay Redeban",
+    "Credit Card Input",
+    "Credit Card Form",
+    "Credit Card Validation",
+    "Tokenize Card"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/globalpayredeban/globalpay.js"
+  },
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependences": {
+    "minimatch": ">=3.0.2",
+    "sshpk": ">=1.13.2",
+    "lodash": ">=4.17.5",
+    "cryptiles": ">=4.1.2",
+    "hoek": ">=4.2.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.4",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-connect": "^2.0.0",
+    "grunt-contrib-cssmin": "^3.0.0",
+    "grunt-contrib-jshint": "^2.0.0",
+    "grunt-contrib-less": "^2.0.0",
+    "grunt-contrib-nodeunit": "^2.0.0",
+    "grunt-contrib-uglify-es": "^3.3.0",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}
