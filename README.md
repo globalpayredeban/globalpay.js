@@ -10,8 +10,8 @@ Primero necesitas incluir jQuery y los archivos `payment_[version].min.js` y `pa
 ```html
 <script src="https://code.jquery.com/jquery-1.11.3.min.js" charset="UTF-8"></script>
 
-<link href="https://cdn.globalpay.com.co/ccapi/sdk/payment_2.0.0.min.css" rel="stylesheet" type="text/css" />
-<script src="https://cdn.globalpay.com.co/ccapi/sdk/payment_2.0.0.min.js" charset="UTF-8"></script>
+<link href="https://cdn.globalpay.com.co/ccapi/sdk/payment_stable.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.globalpay.com.co/ccapi/sdk/payment_stable.min.js" charset="UTF-8"></script>
 ```
 
 ## Uso
@@ -73,8 +73,9 @@ Esta funcionalidad consume el servicio de nuestro API pero de manera segura para
  * @param card La tarjeta que se desea tokenizar.
  * @param success_callback Funcionalidad a ejecutar cuando el servicio de la pasarela responde correctamente. (Incluso si se recibe un estado diferente a "valid")
  * @param failure_callback Funcionalidad a ejecutar cuando el servicio de la pasarela responde con un error.
+ * @param payment_form Instancia del formulario de Pago
  */
-Payment.addCard(uid, email, cardToSave, successHandler, errorHandler);
+Payment.addCard(uid, email, cardToSave, successHandler, errorHandler, myCard);
 
 let successHandler = function(cardResponse) {
   console.log(cardResponse.card);
@@ -83,32 +84,26 @@ let successHandler = function(cardResponse) {
                   'Estado: ' + cardResponse.card.status + '<br>' +
                   "Token: " + cardResponse.card.token + "<br>" +
                   "Referencia de transacción: " + cardResponse.card.transaction_reference
-                );    
+                );
   }else if(cardResponse.card.status === 'review'){
     $('#messages').html('Tarjeta en revisión<br>'+
                   'Estado: ' + cardResponse.card.status + '<br>' +
                   "Token: " + cardResponse.card.token + "<br>" +
                   "Referencia de transacción: " + cardResponse.card.transaction_reference
-                ); 
-  }else if(cardResponse.card.status === 'pending'){
-    $('#messages').html('Tarjeta pendiente de aprobar<br>'+
-                  'Estado: ' + cardResponse.card.status + '<br>' +
-                  "Token: " + cardResponse.card.token + "<br>" +
-                  "Referencia de transacción: " + cardResponse.card.transaction_reference
-                ); 
+                );
   }else{
     $('#messages').html('Error<br>'+
                   'Estado: ' + cardResponse.card.status + '<br>' +
                   "Mensaje: " + cardResponse.card.message + "<br>"
-                ); 
+                );
   }
   submitButton.removeAttr("disabled");
   submitButton.text(submitInitialText);
 };
 
-let errorHandler = function(err) {    
+let errorHandler = function(err) {
   console.log(err.error);
-  $('#messages').html(err.error.type);    
+  $('#messages').html(err.error.type);
   submitButton.removeAttr("disabled");
   submitButton.text(submitInitialText);
 };
